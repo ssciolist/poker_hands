@@ -51,7 +51,7 @@ class Hand
   end
 
   def same_suit?
-    @suits.all? {|suit| suit[0]}
+    @suits.uniq.count == 1
   end
 
   def royal_flush
@@ -67,6 +67,7 @@ class Hand
   end
 
   def flush
+    require 'pry'; binding.pry
     same_suit?
   end
 

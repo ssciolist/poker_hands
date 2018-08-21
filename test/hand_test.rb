@@ -22,11 +22,17 @@ class HandTest < Minitest::Test
     sf = Hand.new(["4S", "5S", "6S", "7S", "8S"])
     four_kind = Hand.new(["4S", "4H", "4D", "4C", "6S"])
     full_house = Hand.new(["4S", "4H", "4D", "6C", "6S"])
+    flush = Hand.new(["2C", "4C", "8C", "6C", "TC"])
+    straight = Hand.new(["3S", "4H", "5D", "6C", "7S"])
+    three_kind = Hand.new(["4S", "4H", "4D", "6C", "9S"])
 
     assert_equal 9, rf.score
     assert_equal 8, sf.score
     assert_equal 7, four_kind.score
     assert_equal 6, full_house.score
+    assert_equal 5, flush.score
+    assert_equal 4, straight.score
+    assert_equal 3, three_kind.score
   end
 
   def test_it_can_find_same_suits
