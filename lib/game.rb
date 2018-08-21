@@ -1,4 +1,5 @@
 class Game
+  attr_reader :scorekeeper
   def initialize
     @scorekeeper = Hash.new(0)
   end
@@ -12,8 +13,8 @@ class Game
     end
   end
 
-  def player_1_wins
-    @scorekeeper[:player_1]
-  end
+  # def player_1_wins
+  #   @scorekeeper[:player_1]
+  # end
 
 end

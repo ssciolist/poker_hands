@@ -11,4 +11,12 @@ class RoundTest < Minitest::Test
     assert_instance_of Hand, round.player_1
     assert_instance_of Hand, round.player_2
   end
+
+  def test_it_can_determine_winner
+    hand_array = ["8C", "TS", "KC", "9H", "4S", "7D", "2S", "5D", "3S", "AC"]
+    round = Round.new(hand_array)
+
+    assert_equal "player_2", round.winner
+  end
+
 end
