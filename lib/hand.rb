@@ -50,11 +50,29 @@ class Hand
     end
   end
 
-  def royal_flush
-    same_suit? && @numbers[0] == 10 && @numbers[4] == 14
-  end
-
   def same_suit?
     @suits.all? {|suit| suit[0]}
   end
+
+  def royal_flush
+    same_suit? && straight && @numbers[0] == 10
+  end
+
+  def straight_flush
+    same_suit? && straight
+  end
+
+  def straight
+    @numbers.sort.each_cons(2).all? { |first_card, second_card| second_card == first_card + 1 }
+  end
+
+  def flush
+    same_suit?
+  end
+
+  def four_of_a_kind
+    grouped = @numbers.group_by {|num| num}
+    grouped.values.any? {|value| value.count == 4}
+  end
+
 end
