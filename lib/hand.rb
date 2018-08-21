@@ -1,7 +1,6 @@
 class Hand
   attr_reader :numbers,
-              :suits,
-              :top_hand
+              :suits
 
   def initialize(card_array)
     unsorted_card_numbers = card_array.map {|card| card[0]}
@@ -45,7 +44,6 @@ class Hand
     elsif two_pair
       2
     elsif pair
-      @top_hand = pair
       1
     else
       0
@@ -94,6 +92,22 @@ class Hand
 
   def multiples(of_a_kind, freq = 1)
     @numbers.find_all{ |num| @numbers.count(num) == of_a_kind }.uniq.count == freq
+  end
+
+  def tiebreaker
+    if royal_flush || straight_flush || flush || straight
+      @numbers[4]
+    elsif four_of_a_kind
+      num = @numbers.find{ |num| @numbers.count(num) == 4 }
+    elsif full_house || three_of_a_kind
+      num = @numbers.find{ |num| @numbers.count(num) == 3 }
+    elsif two_pair
+      num = @numbers.find_all{ |num| @numbers.count(num) == 2 }.max
+    elsif pair
+      num = @numbers.find{ |num| @numbers.count(num) == 2 }
+    else
+      @numbers[4]
+    end
   end
 
 end

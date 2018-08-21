@@ -41,19 +41,28 @@ class HandTest < Minitest::Test
     assert_equal 0, high_card.score
   end
 
-  def test_top_hands_set_for_tiebreaks
-    skip
+  def test_it_sets_tiebreaks
+    rf = Hand.new(["TH", "JH", "QH", "KH", "AH"])
+    sf = Hand.new(["4S", "5S", "6S", "7S", "8S"])
     four_kind = Hand.new(["4S", "4H", "4D", "4C", "6S"])
     full_house = Hand.new(["4S", "4H", "4D", "6C", "6S"])
+    flush = Hand.new(["2C", "4C", "8C", "6C", "TC"])
+    straight = Hand.new(["3S", "4H", "5D", "6C", "7S"])
     three_kind = Hand.new(["4S", "4H", "4D", "6C", "9S"])
     two_pair = Hand.new(["4S", "4H", "9D", "6C", "9S"])
     pair = Hand.new(["TD", "TH", "2D", "3S", "4S"])
+    high_card = Hand.new(["TD", "KH", "2D", "3S", "4S"])
 
-    assert_equal 7, four_kind.top_hand
-    assert_equal 6, full_house.top_hand
-    assert_equal 3, three_kind.top_hand
-    assert_equal 2, two_pair.top_hand
-    assert_equal 1, pair.top_hand
+    assert_equal 14, rf.tiebreaker
+    assert_equal 8, sf.tiebreaker
+    assert_equal 4, four_kind.tiebreaker
+    assert_equal 4, full_house.tiebreaker
+    assert_equal 10, flush.tiebreaker
+    assert_equal 7, straight.tiebreaker
+    assert_equal 4, three_kind.tiebreaker
+    assert_equal 9, two_pair.tiebreaker
+    assert_equal 10, pair.tiebreaker
+    assert_equal 13, high_card.tiebreaker
   end
 
   def test_it_can_find_same_suits
