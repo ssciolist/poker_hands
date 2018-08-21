@@ -71,8 +71,19 @@ class Hand
   end
 
   def four_of_a_kind
-    grouped = @numbers.group_by {|num| num}
-    grouped.values.any? {|value| value.count == 4}
+    @numbers.find{ |num| @numbers.count(num) == 4 }
+  end
+
+  def full_house
+    three_of_a_kind && pair
+  end
+
+  def three_of_a_kind
+    @numbers.find{ |num| @numbers.count(num) == 3 }
+  end
+
+  def pair
+    @numbers.find{ |num| @numbers.count(num) == 2 }
   end
 
 end
