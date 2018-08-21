@@ -10,10 +10,16 @@ class HandTest < Minitest::Test
     assert_equal [4, 11, 13, 13, 14], hand.numbers
   end
 
-  def test_sorts_hand_numbers
+  def test_it_sorts_hand_numbers
     hand = Hand.new(["KH", "4H", "AS", "JS", "KS"])
 
 
     assert_equal [4, 11, 13, 13, 14], hand.numbers
+  end
+
+  def test_it_scores_hand
+    hand = Hand.new(["TH", "JH", "QH", "KH", "AH"])
+
+    assert_equal 9, hand.score
   end
 end

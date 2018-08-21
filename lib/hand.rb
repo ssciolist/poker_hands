@@ -19,9 +19,34 @@ class Hand
   end
 
   def face_card_values
-    {"J": 11,
+    {"T": 10,
+     "J": 11,
      "Q": 12,
      "K": 13,
      "A": 14}
+  end
+
+  def score
+    if royal_flush
+      9
+    elsif straight_flush
+      8
+    elsif four_of_a_kind
+      7
+    elsif full_house
+      6
+    elsif flush
+      5
+    elsif straight
+      4
+    elsif three_of_a_kind
+      3
+    elsif two_pair
+      2
+    elsif pair
+      1
+    else
+      0
+    end
   end
 end
