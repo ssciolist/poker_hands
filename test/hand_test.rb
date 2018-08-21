@@ -27,6 +27,7 @@ class HandTest < Minitest::Test
     three_kind = Hand.new(["4S", "4H", "4D", "6C", "9S"])
     two_pair = Hand.new(["4S", "4H", "9D", "6C", "9S"])
     pair = Hand.new(["TD", "TH", "2D", "3S", "4S"])
+    high_card = Hand.new(["TD", "KH", "2D", "3S", "4S"])
 
     assert_equal 9, rf.score
     assert_equal 8, sf.score
@@ -37,6 +38,22 @@ class HandTest < Minitest::Test
     assert_equal 3, three_kind.score
     assert_equal 2, two_pair.score
     assert_equal 1, pair.score
+    assert_equal 0, high_card.score
+  end
+
+  def test_top_hands_set_for_tiebreaks
+    skip
+    four_kind = Hand.new(["4S", "4H", "4D", "4C", "6S"])
+    full_house = Hand.new(["4S", "4H", "4D", "6C", "6S"])
+    three_kind = Hand.new(["4S", "4H", "4D", "6C", "9S"])
+    two_pair = Hand.new(["4S", "4H", "9D", "6C", "9S"])
+    pair = Hand.new(["TD", "TH", "2D", "3S", "4S"])
+
+    assert_equal 7, four_kind.top_hand
+    assert_equal 6, full_house.top_hand
+    assert_equal 3, three_kind.top_hand
+    assert_equal 2, two_pair.top_hand
+    assert_equal 1, pair.top_hand
   end
 
   def test_it_can_find_same_suits
