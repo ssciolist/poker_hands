@@ -67,7 +67,6 @@ class Hand
   end
 
   def flush
-    require 'pry'; binding.pry
     same_suit?
   end
 
@@ -81,6 +80,10 @@ class Hand
 
   def three_of_a_kind
     @numbers.find{ |num| @numbers.count(num) == 3 }
+  end
+
+  def two_pair
+    @numbers.find_all{ |num| @numbers.count(num) == 2 }.uniq.count == 2
   end
 
   def pair
