@@ -22,4 +22,16 @@ class HandTest < Minitest::Test
 
     assert_equal 9, hand.score
   end
+
+  def test_it_can_find_a_royal_flush
+    hand = Hand.new(["TH", "JH", "QH", "KH", "AH"])
+
+    assert hand.royal_flush
+  end
+
+  def test_it_can_find_same_suits
+    hand = Hand.new(["TH", "JH", "QH", "KH", "AH"])
+
+    assert hand.same_suit?
+  end
 end

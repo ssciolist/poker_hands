@@ -49,4 +49,12 @@ class Hand
       0
     end
   end
+
+  def royal_flush
+    same_suit? && @numbers[0] == 10 && @numbers[4] == 14
+  end
+
+  def same_suit?
+    @suits.all? {|suit| suit[0]}
+  end
 end
