@@ -3,14 +3,19 @@ class Hand
               :suits
 
   def initialize(card_array)
-    @numbers = card_num_sort(card_array.map {|card| card[0]})
+    unsorted_card_numbers = card_array.map {|card| card[0]}
+    @numbers = card_num_sort(unsorted_card_numbers)
     @suits = card_array.map {|card| card[1]}
   end
 
   def card_num_sort(card_numbers_array)
     card_numbers_array.map do |number|
-      number.to_i
-    end
+      if face_card_values[number.to_sym]
+        face_card_values[number.to_sym]
+      else
+        number.to_i
+      end
+    end.sort
   end
 
   def face_card_values
